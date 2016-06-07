@@ -1,6 +1,6 @@
-# Proposal: ImagePipe
+# Proposal: Image Pipe
 
-**ImagePipe** is a web app that allows artists to upload single **source** images.
+**Image Pipe** is a web app that allows artists to upload single **source** images.
 
 Pairs of new images from different artists will be combined together at half opacity each, to produce **mashup** images.
 Once an image has been mashed-up, it won't be paired again.
@@ -11,14 +11,14 @@ The main page of the site will show a feed of mashed-up images with their pair o
 
 ### Main / Gallery Page
 
-The main / gallery page will show a vertical list of mashups with artists' names below each.
+The main / gallery page will show a vertical list of mashups.
 The ten most recent mashups will be displayed on the page.
 
 In the header, there will be a link to the upload page.
 
 ### Upload Page
 
-The upload page will have a form where the user can fill in their name as the artists and upload an image and then submit both.
+The upload page will have a form where the user can upload an image.
 
 There will be a confirmation alert if the image is uploaded successfully.
 
@@ -31,10 +31,9 @@ Each Source is one un-modified image uploaded by a user.
 * Unique ID
 * Image JPEG data
 * Upload timestamp
-* Artists name
 * Been mashed-up? flag
 
-Sources will need to be looked up by most recent upload timestamp, artist name, and mashed-up flag.
+Sources will need to be looked up by most recent upload timestamp and mashed-up flag.
 
 ### Mashup
 

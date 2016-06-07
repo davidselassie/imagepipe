@@ -1,3 +1,67 @@
-img {
-    border-radius: 10px;
+body {
+    font-family: sans-serif;
+    color: #444;
+    background-color: #EEE;
+    padding: 20px 50px 0px 50px;
+}
+
+header {
+    margin-bottom: 50px;
+    display: flex;
+}
+
+header > nav {
+    margin: 20px;
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: #3b59c4;
+}
+
+.tile-title {
+    font-size: 18px;
+
+}
+
+header > h1 {
+    margin: 20px;
+    flex: 1;
+}
+
+.bordered {
+    border: 2px #AAA solid;
+    border-radius: 15px;
+}
+
+article {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.tile {
+    width: 512px;
+    height: 512px;
+    border-radius: 15px;
+}
+
+#input-image-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DDD;
+}
+
+#input-title-header {
+    display: flex;
+}
+
+#input-title {
+    box-sizing: border-box;
+    flex: 1;
 }

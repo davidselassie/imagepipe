@@ -1,18 +1,23 @@
 """imagepipe Logic."""
 from io import BytesIO
+from itertools import chain, zip_longest
 
 from PIL import Image
 
 from django.core.files import File
 
-from . import images, models
+from resizeimage import resizeimage
+
+from titlecase import titlecase
+
+from . import models
 
 
-def create_src_model(src_image_file):
-    """Create a new Source model from a Django file of the image and return the
-    model.
+def create_src_model(src_image_file, title):
+    """Create a new Source model from a Django file of the image, a title, and
+    return the model.
     """
-    src_model = models.Source(image_file=src_image_file)
+    src_model = models.Source(image_file=src_image_file, title=title)
     src_model.save()
     return src_model
 
@@ -47,16 +52,49 @@ def create_mashup(src_model_one, src_model_two):
     src_pil_one = open_model_as_pil(src_model_one)
     src_pil_two = open_model_as_pil(src_model_two)
 
-    mashup_pil = images.mashup_pils(src_pil_one, src_pil_two)
+    mashup_pil = mashup_pils(src_pil_one, src_pil_two)
     mashup_image_file = save_pil_to_file(mashup_pil, 'mashup')
+    mashup_title = mashup_titles(src_model_one.title, src_model_two.title)
 
-    mashup = models.Mashup(image_file=mashup_image_file)
+    mashup = models.Mashup(image_file=mashup_image_file, title=mashup_title)
     mashup.save()
     src_model_one.mashup = mashup
     src_model_one.save()
     src_model_two.mashup = mashup
     src_model_two.save()
     return mashup
+
+
+def normalize(pil):
+    """Normalize a PIL object so it can be mashed-up with another.
+
+    Make it a standard size: Fill it to fully cover a box, then crop it.
+    """
+    output_size = (512, 512)
+    pil_rgb = pil.convert('RGB')
+    pil_resized_cropped = resizeimage.resize_cover(pil_rgb, output_size)
+    return pil_resized_cropped
+
+
+def mashup_pils(src_pil_one, src_pil_two):
+    """Mashup two Source PIL object and return a PIL object of that result."""
+    return Image.blend(normalize(src_pil_one), normalize(src_pil_two), 0.5)
+
+
+def mashup_titles(title_one, title_two):
+    """Mashup two Source titles.
+
+    Interleave their words and titlecase them.
+
+    >>> mashup_titles('zero one two three', 'four five')
+    'Zero Four One Five Two Three'
+    """
+    title_one_tokens = title_one.split()
+    title_two_tokens = title_two.split()
+    token_pairs = zip_longest(title_one_tokens, title_two_tokens)
+    tokens = chain(*token_pairs)
+    interleaved_tokens = (token for token in tokens if token is not None)
+    return titlecase(' '.join(interleaved_tokens))
 
 
 def attempt_create_mashup():
@@ -75,3 +113,8 @@ def get_srcs():
 def get_mashups():
     """Get Mashups for main page listing."""
     return models.Mashup.objects.order_by('-timestamp')
+
+
+def get_mashup(id):
+    """Get a specific Mashup by ID."""
+    return models.Mashup.objects.get(id=id)

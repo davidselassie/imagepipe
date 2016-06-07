@@ -6,18 +6,20 @@ class Mashup(models.Model):
     """Stores a mashed-up combination of two images."""
 
     image_file = models.ImageField()
+    title = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Mashup(id={!r}, sources={!r})'.format(
+        return 'Mashup(id={!r}, title={!r})'.format(
             self.id,
-            self.sources.all())
+            self.title)
 
 
 class Source(models.Model):
     """Stores an unmodified user-uploaded image."""
 
     image_file = models.ImageField()
+    title = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     mashup = models.ForeignKey(
         Mashup,
@@ -27,4 +29,4 @@ class Source(models.Model):
         related_name='sources')
 
     def __str__(self):
-        return 'Source(id={!r})'.format(self.id)
+        return 'Source(id={!r}, title={!r})'.format(self.id, self.title)

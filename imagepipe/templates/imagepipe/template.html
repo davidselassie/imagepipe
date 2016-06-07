@@ -3,20 +3,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>ImagePipe {% block title %}{% endblock %}</title>
+        <title>Image Pipe {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'imagepipe/site.css' %}">
     </head>
     <body>
-        <header>
-            <h1>ImagePipe</h1>
+        <header class="bordered">
+            <h1>Image Pipe</h1>
             <nav>
-                <ul>
-                    <li><a href="{% url 'mashup_index' %}">Mashups</a></li>
-                    <li><a href="{% url 'src_index' %}">Sources</a></li>
-                    <li><a href="{% url 'upload' %}">Upload</a></li>
-                </ul>
+                <a href="{% url 'mashup_index' %}">Home</a>
+                <a href="{% url 'upload' %}">Upload</a>
             </nav>
         </header>
-        {% block content %}{% endblock %}
+        <main>
+            {% block content %}{% endblock %}
+        </main>
     </body>
 </html>

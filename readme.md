@@ -1,6 +1,6 @@
-# ImagePipe
+# Image Pipe
 
-**ImagePipe** is a web app that allows artists to upload single **source** images which will be paired together to produce **mashup** images.
+**Image Pipe** is a web app that allows artists to upload single **source** images which will be paired together to produce **mashup** images.
 
 Check out the [full proposal](proposal.md).
 

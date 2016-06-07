@@ -3,12 +3,10 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-{% for mashup in mashups %}
 <article>
     <div>
         <img class="tile" src="{{ mashup.image_file.url }}">
-        <h2 class="title-title"><a href="{% url 'mashup' mashup.id %}">{{ mashup.title }}</a></h2>
+        <h2 class="title-title">{{ mashup.title }}</h2>
     </div>
 </article>
-{% endfor %}
 {% endblock %}
