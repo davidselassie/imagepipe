@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ImagePipe {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'imagepipe/site.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>ImagePipe</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'mashup_index' %}">Mashups</a></li>
+                    <li><a href="{% url 'src_index' %}">Sources</a></li>
+                    <li><a href="{% url 'upload' %}">Upload</a></li>
+                </ul>
+            </nav>
+        </header>
+        {% block content %}{% endblock %}
+    </body>
+</html>

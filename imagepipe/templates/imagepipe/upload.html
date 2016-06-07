@@ -1,0 +1,11 @@
+{% extends 'imagepipe/template.html' %}
+
+{% block title %}Upload{% endblock %}
+
+{% block content %}
+<form action="{% url 'upload_submit' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="src-image-file">
+    <input type="submit">
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'imagepipe/template.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+{% for mashup in mashups %}
+<article>
+    <img src="{{ mashup.image_file.url }}">
+</article>
+{% endfor %}
+{% endblock %}
