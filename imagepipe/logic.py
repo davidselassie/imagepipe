@@ -99,11 +99,15 @@ def mashup_titles(title_one, title_two):
 
 
 def attempt_create_mashup():
-    """Run Mashup creation code if there are enough Sources availible."""
+    """Run Mashup creation code and return the Mashup if there are enough
+    Sources availible, None otherwise.
+    """
     unmashed_src_set = select_srcs_for_mashup()
     if len(unmashed_src_set) > 1:
         src_model_one, src_model_two = unmashed_src_set
-        create_mashup(src_model_one, src_model_two)
+        return create_mashup(src_model_one, src_model_two)
+    else:
+        return None
 
 
 def get_srcs():
@@ -114,6 +118,11 @@ def get_srcs():
 def get_mashups():
     """Get Mashups for main page listing."""
     return models.Mashup.objects.order_by('-timestamp')
+
+
+def get_src(id):
+    """Get a specific Source by ID."""
+    return models.Source.objects.get(id=id)
 
 
 def get_mashup(id):

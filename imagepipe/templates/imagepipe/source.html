@@ -1,14 +1,17 @@
 {% extends 'imagepipe/template.html' %}
 
-{% block title %}Sources{% endblock %}
+{% block title %}{{ src.title }}{% endblock %}
 
 {% block content %}
-{% for src in srcs %}
 <article>
     <div>
         <img class="tile" src="{{ src.image_file.url }}">
         <h2 class="title-title">{{ src.title }}</h2>
+        {% if src.mashup %}
+        <p>
+            Part of <a href="{% url 'mashup' src.mashup.id %}">{{ src.mashup.title }}</a>
+        </p>
+        {% endif %}
     </div>
 </article>
-{% endfor %}
 {% endblock %}

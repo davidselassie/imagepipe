@@ -1,0 +1,15 @@
+{% extends 'imagepipe/template.html' %}
+{% load static %}
+
+{% block title %}Upload Submit{% endblock %}
+
+{% block content %}
+<article>
+    <h2>{{ src.title }} Submitted</h2>
+    {% if maybe_mashup is not None %}
+    <p>
+        It's already part of <a href="{% url 'mashup' maybe_mashup.id %}">{{ maybe_mashup.title }}</a>.
+    </p>
+    {% endif %}
+</article>
+{% endblock %}

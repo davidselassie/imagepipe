@@ -1,6 +1,5 @@
 """imagepipe Views."""
 from django.shortcuts import render
-from django.http import JsonResponse
 
 from . import logic
 
@@ -30,16 +29,30 @@ def render_src_index(request):
     return render(request, 'imagepipe/src_index.html', template_args)
 
 
+def render_src(request, src_id):
+    """Render the template that shows a single Source by ID."""
+    src_id = int(src_id)
+    template_args = {
+        'src': logic.get_src(src_id),
+    }
+    return render(request, 'imagepipe/source.html', template_args)
+
+
 def render_upload(request):
     """Render the upload form template."""
     return render(request, 'imagepipe/upload.html')
 
 
-def return_upload_submit(request):
+def render_upload_submit(request):
+    """Accept an upload POST and redirect to the uploaded source page."""
     src_image_file = request.FILES['src-image-file']
     src_title = request.POST['src-title']
 
     src_model = logic.create_src_model(src_image_file, src_title)
-    logic.attempt_create_mashup()
+    maybe_mashup = logic.attempt_create_mashup()
 
-    return JsonResponse({'id': src_model.id})
+    template_args = {
+        'src': src_model,
+        'maybe_mashup': maybe_mashup,
+    }
+    return render(request, 'imagepipe/upload_submit.html', template_args)

@@ -1,16 +1,20 @@
 {% extends 'imagepipe/template.html' %}
+{% load static %}
 
 {% block title %}Upload{% endblock %}
 
 {% block content %}
 <article>
-    <form action="{% url 'upload_submit' %}" method="POST" enctype="multipart/form-data">
+    <form id="input" action="{% url 'upload_submit' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
             <div class="tile bordered" id="input-image-tile">
                 <input type="file" name="src-image-file">
             </div>
-            <h2 id="input-title-header"><input type="text" name="title" placeholder="Title" id="input-title" class="tile-title"><input type="submit" class="tile-title"></h2>
+            <h2 id="input-title-header">
+                <input type="text" name="src-title" placeholder="Title" id="input-title" class="tile-title">
+                <input type="submit" class="tile-title">
+            </h2>
         </div>
     </form>
 </article>

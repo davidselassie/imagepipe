@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^mashups$', views.render_mashup_index),
     url(r'^mashup/(?P<mashup_id>\d+)$', views.render_mashup, name='mashup'),
     url(r'^sources$', views.render_src_index, name='src_index'),
+    url(r'^source/(?P<src_id>\d+)$', views.render_src, name='src'),
     url(r'^upload$', views.render_upload, name='upload'),
-
-    url(r'^upload/submit$', views.return_upload_submit, name='upload_submit'),
+    url(r'^upload/submit$', views.render_upload_submit, name='upload_submit'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
