@@ -72,7 +72,8 @@ def normalize(pil):
     """
     output_size = (512, 512)
     pil_rgb = pil.convert('RGB')
-    pil_resized_cropped = resizeimage.resize_cover(pil_rgb, output_size)
+    pil_resized_cropped = resizeimage.resize_cover(
+        pil_rgb, output_size, validate=False)
     return pil_resized_cropped
 
 
