@@ -5,7 +5,7 @@ from django.db import models
 class Mashup(models.Model):
     """Stores a mashed-up combination of two images."""
 
-    image_file = models.ImageField()
+    image_file = models.ImageField(upload_to='mashups')
     title = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -18,7 +18,7 @@ class Mashup(models.Model):
 class Source(models.Model):
     """Stores an unmodified user-uploaded image."""
 
-    image_file = models.ImageField()
+    image_file = models.ImageField(upload_to='sources')
     title = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     mashup = models.ForeignKey(

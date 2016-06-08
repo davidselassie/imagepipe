@@ -43,7 +43,7 @@ def save_pil_to_file(pil, name):
     """
     image_file = File(BytesIO())
     pil.save(image_file, format='jpeg')
-    image_file.name = name
+    image_file.name = name + '.jpg'
     return image_file
 
 
