@@ -49,6 +49,10 @@ article {
     border-radius: 15px;
 }
 
+.tile > h2 {
+    margin: 20px;
+}
+
 #input-image-tile {
     display: flex;
     justify-content: center;
