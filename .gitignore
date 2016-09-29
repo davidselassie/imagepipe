@@ -1,11 +1,25 @@
-venv
+# Pre-parsed Python
 __pycache__
+*.pyc
 
-.DS_Store
+# Virtualenvs
+venv
 
+# PyCharm Temporary Files
+.idea
+.cache
+
+# Django Default DB
 db.sqlite3
 
+# Django Staged Static Files
 staticfiles
+
+# Django User-uploaded Files
 mediafiles
 
+# Secrets
 .env
+
+# macOS
+.DS_Store
